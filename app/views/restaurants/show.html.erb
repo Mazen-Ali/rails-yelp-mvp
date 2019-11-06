@@ -1,0 +1,24 @@
+<h1><%= @restaurant.name %></h1>
+<p> -------------------------- </p>
+<h5>Category: <%= @restaurant.category %></h5>
+<p>Address: <%= @restaurant.address %></p>
+<p>Phone Number: <%= @restaurant.phone_number %></p>
+
+<p> -------------------------- </p>
+<h6><strong>Write a new review:</strong></h6>
+
+<%= simple_form_for [@restaurant, @review] do |f| %>
+  <%= f.input :content %>
+  <%= f.input :rating %>
+  <%= f.submit "add a review", class: "btn btn-primary" %>
+<% end %>
+
+<% @reviews.each_with_index do |rating, i| %>
+<p> -------------------------- </p>
+<p>Review #: <%= i + 1 %></p>
+<p>Description: <%= rating.content %></p>
+<p>Stars: <%= rating.rating %></p>
+<% end %>
+
+<p> -------------------------- </p>
+<%= link_to "Back to index", restaurants_path%>
